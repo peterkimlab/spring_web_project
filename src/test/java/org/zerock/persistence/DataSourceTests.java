@@ -34,6 +34,7 @@ public class DataSourceTests {
 		) {       
             log.info(session);
             log.info(con);
+            
         } catch (Exception e) {
             fail(e.getMessage());
             
