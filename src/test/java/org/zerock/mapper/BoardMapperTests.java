@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.domain.BoardVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -22,6 +23,31 @@ public class BoardMapperTests {
 
 		mapper.getList().forEach(board -> log.info(board));
 
+	}
+	
+	@Test
+	public void testInsert() {
+		BoardVO vo = new BoardVO();
+		vo.setTitle("코인 분석");
+		vo.setContent("저항과 지지 라인 잡기");
+		vo.setWriter("Burger");
+		
+		mapper.insert(vo);
+		log.info("---------------------------");
+		log.info("after insert " + vo.getBno());
+	}
+	
+	@Test
+	public void testInsertSelectKey() {
+		BoardVO vo = new BoardVO();
+		vo.setTitle("SelectKey 코인 분석");
+		vo.setContent("SelectKey 저항과 지지 라인 잡기");
+		vo.setWriter("SelectKey Burger");
+		
+		mapper.insertSelectKey(vo);
+		
+		log.info("---------------------------");
+		log.info("after insert selectkey " + vo.getBno());
 	}
 
 }
