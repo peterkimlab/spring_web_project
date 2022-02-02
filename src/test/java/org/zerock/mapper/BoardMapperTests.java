@@ -49,5 +49,28 @@ public class BoardMapperTests {
 		log.info("---------------------------");
 		log.info("after insert selectkey " + vo.getBno());
 	}
+	
+	@Test
+	public void testRead() {
+		BoardVO vo = mapper.read(3L);
+		log.info(vo);
+	}
+	
+	@Test
+	public void testDelete() {
+		int count = mapper.delete(2L);
+		log.info("count : " + count);
+	}
+	
+	@Test
+	public void testUpdate() {
+		BoardVO vo = new BoardVO();
+		vo.setBno(5L);
+		vo.setTitle("Updated Title");
+		vo.setContent("Updated content");
+		vo.setWriter("user00");
+		
+		log.info("count : " + mapper.update(vo));
+	}
 
 }
