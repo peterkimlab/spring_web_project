@@ -68,6 +68,7 @@ public class BoardControllerTests {
 				.andReturn());
 	}
 	
+	// http://localhost:8080/board/get?bno=1
 	@Test
 	public void tetGet() throws Exception {
 
