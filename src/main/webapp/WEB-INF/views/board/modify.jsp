@@ -30,7 +30,7 @@
 
         <div class="form-group">
         	<label>Title</label> 
-            <input class="form-control" name='title' value='<c:out value="${board.title }"/>' readonly="readonly">
+            <input class="form-control" name='title' value='<c:out value="${board.title }"/>'>
         </div>
 
         <div class="form-group">
@@ -68,6 +68,10 @@ $(document).ready(function(e) {
 			self.location = "/board/list";
 		} else if (operation === 'remove') {
 			formObj.attr("action", "/board/remove")
+			.attr("method", "post");
+			formObj.submit();
+		} else if (operation === 'modify') {
+			formObj.attr("action", "/board/modify")
 			.attr("method", "post");
 			formObj.submit();
 		}
