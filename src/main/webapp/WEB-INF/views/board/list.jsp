@@ -87,10 +87,15 @@
 			if (result === '' || history.state) {
 				return;
 			}
-			if (parseInt(result) > 0) {
+			
+			if (result === 'success') {
+				$(".modal-body").html(
+					"정상적으로 처리되었습니다.");
+			} else if (parseInt(result) > 0) {
 				$(".modal-body").html(
 						"게시글 " + parseInt(result) + "번이 등록 되었습니다.");
 			}
+			
 			$("#myModal").modal("show");
 		}
 		
