@@ -50,5 +50,12 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-        <%@include file="../includes/footer.jsp" %>
+            
+<script>
+$(document).ready(function(){
+	var restult = '<c:out value="${result}"/>';
+}); 
+
+</script>
+<%@include file="../includes/footer.jsp" %>
     
