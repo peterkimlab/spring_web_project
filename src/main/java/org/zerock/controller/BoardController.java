@@ -43,6 +43,11 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/hope")
+	public void hopeGET() {
+		System.out.print("###################### hope #######################");
+	}
+	
 	@PostMapping("/modify")
 	public String modify(BoardVO board, RedirectAttributes rttr) {
 		

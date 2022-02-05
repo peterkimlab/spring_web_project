@@ -35,6 +35,16 @@ public class BoardControllerTests {
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
+	
+	@Test
+	public void testHope() throws Exception {
+		log.info(
+				mockMvc.perform(
+						MockMvcRequestBuilders.get("/board/hope"))
+				.andReturn()
+				.getModelAndView()
+				.getModelMap());
+	}
 
 	@Test
 	public void testList() throws Exception {
