@@ -46,7 +46,7 @@ public class MemberMapperTests {
 	public void memberJoin() throws Exception{
 		MemberVO member = new MemberVO();
 		
-		member.setMemberId("test1");			//회원 id
+		member.setMemberId("tde");			//회원 id
 		member.setMemberPw("test1");			//회원 비밀번호
 		member.setMemberName("test");		//회원 이름
 		member.setMemberMail("test");		//회원 메일
@@ -62,7 +62,7 @@ public class MemberMapperTests {
 	public void testMemberJoin() throws Exception { 
  
 		String resultPage = mockMvc 
-				.perform(MockMvcRequestBuilders.post("/member/join").param("memberId", "Test3").param("memberPw", "admin") 
+				.perform(MockMvcRequestBuilders.post("/member/join").param("memberId", "Tst3").param("memberPw", "admin") 
 						.param("memberName", "admin").param("memberMail", "admin")
 						.param("memberAddr1", "admin").param("memberAddr2", "admin").param("memberAddr3", "admin"))
 				.andReturn().getModelAndView().getViewName(); 
