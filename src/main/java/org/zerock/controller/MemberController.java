@@ -26,7 +26,7 @@ public class MemberController {
 	
 //	@Autowired
 //	private BCryptPasswordEncoder pwEncoder;
-	BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
+//	BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 	
 	//회원가입 페이지 이동
 	@RequestMapping(value="/join", method=RequestMethod.GET)
@@ -40,12 +40,12 @@ public class MemberController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinPOST(MemberVO member) throws Exception{
 		
-		String rawPw = "";            // 인코딩 전 비밀번호
-        String encodePw = "";        // 인코딩 후 비밀번호
-        
-        rawPw = member.getMemberPw();            // 비밀번호 데이터 얻음
-        encodePw = pwEncoder.encode(rawPw);        // 비밀번호 인코딩
-        member.setMemberPw(encodePw);            // 인코딩된 비밀번호 member객체에 다시 저장
+//		String rawPw = "";            // 인코딩 전 비밀번호
+//        String encodePw = "";        // 인코딩 후 비밀번호
+//        
+//        rawPw = member.getMemberPw();            // 비밀번호 데이터 얻음
+//        encodePw = pwEncoder.encode(rawPw);        // 비밀번호 인코딩
+//        member.setMemberPw(encodePw);            // 인코딩된 비밀번호 member객체에 다시 저장
         
         /* 회원가입 쿼리 실행 */
         memberservice.memberJoin(member);
@@ -93,22 +93,24 @@ public class MemberController {
 		
 		if(lvo != null) {			// 일치하는 아이디 존재시
 			
-			rawPw = member.getMemberPw();		// 사용자가 제출한 비밀번호
-			encodePw = lvo.getMemberPw();		// 데이터베이스에 저장한 인코딩된 비밀번호
+			return "redirect:/main";
 			
-			if(true == pwEncoder.matches(rawPw, encodePw)) {		// 비밀번호 일치여부 판단
-				
-				lvo.setMemberPw("");					// 인코딩된 비밀번호 정보 지움
-				session.setAttribute("member", lvo); 	// session에 사용자의 정보 저장
-				return "redirect:/main";		// 메인페이지 이동
-				
-				
-			} else {
-
-				rttr.addFlashAttribute("result", 0);			
-				return "redirect:/member/login";	// 로그인 페이지로 이동
-				
-			}
+//			rawPw = member.getMemberPw();		// 사용자가 제출한 비밀번호
+//			encodePw = lvo.getMemberPw();		// 데이터베이스에 저장한 인코딩된 비밀번호
+//			
+//			if(true == pwEncoder.matches(rawPw, encodePw)) {		// 비밀번호 일치여부 판단
+//				
+//				lvo.setMemberPw("");					// 인코딩된 비밀번호 정보 지움
+//				session.setAttribute("member", lvo); 	// session에 사용자의 정보 저장
+//				return "redirect:/main";		// 메인페이지 이동
+//				
+//				
+//			} else {
+//
+//				rttr.addFlashAttribute("result", 0);			
+//				return "redirect:/member/login";	// 로그인 페이지로 이동
+//				
+//			}
 			
 		} else {					// 일치하는 아이디가 존재하지 않을 시 (로그인 실패)
 			
@@ -117,5 +119,19 @@ public class MemberController {
 			
 		}
 	}
+	
+	/* 메인페이지 로그아웃 */
+    @RequestMapping(value="logout.do", method=RequestMethod.GET)
+    public String logoutMainGET(HttpServletRequest request) throws Exception{
+        
+        logger.info("logoutMainGET메서드 진입");
+        
+        HttpSession session = request.getSession();
+        
+        session.invalidate();
+        
+        return "redirect:/main";        
+        
+    }
 	
 }

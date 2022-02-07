@@ -62,7 +62,7 @@ public class MemberMapperTests {
 	public void testMemberJoin() throws Exception { 
  
 		String resultPage = mockMvc 
-				.perform(MockMvcRequestBuilders.post("/member/join").param("memberId", "Tst3").param("memberPw", "admin") 
+				.perform(MockMvcRequestBuilders.post("/member/join").param("memberId", "Tstr3").param("memberPw", "admin") 
 						.param("memberName", "admin").param("memberMail", "admin")
 						.param("memberAddr1", "admin").param("memberAddr2", "admin").param("memberAddr3", "admin"))
 				.andReturn().getModelAndView().getViewName(); 
