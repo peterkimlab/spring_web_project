@@ -69,7 +69,16 @@ public class MemberMapperTests {
  
 		log.info(resultPage); 
  
-	} 
+	}
+	
+	// 아이디 중복검사
+	@Test
+	public void memberIdChk() throws Exception{
+		String id = "test";	// 존재하는 아이디
+		String id2 = "test123";	// 존재하지 않는 아이디
+		membermapper.idCheck(id);
+		membermapper.idCheck(id2);
+	}
 	
 	
 	
