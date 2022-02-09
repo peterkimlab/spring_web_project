@@ -45,5 +45,15 @@ public class BoardControllerTests {
 				.getModelAndView()
 				.getModelMap());
 	}
+	
+	@Test 
+	public void testMain() throws Exception { 
+		log.info( 
+				mockMvc.perform( 
+						MockMvcRequestBuilders.get("/main")) 
+				.andReturn() 
+				.getModelAndView() 
+				.getModelMap()); 
+	} 
 
 }

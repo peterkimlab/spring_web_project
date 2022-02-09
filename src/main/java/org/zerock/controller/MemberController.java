@@ -92,7 +92,8 @@ public class MemberController {
 		MemberVO lvo = memberservice.memberLogin(member);	// 제출한아이디와 일치하는 아이디 있는지 
 		
 		if(lvo != null) {			// 일치하는 아이디 존재시
-			
+			session.setAttribute("member", lvo);
+			logger.info("Login lvo : " + lvo);
 			return "redirect:/main";
 			
 //			rawPw = member.getMemberPw();		// 사용자가 제출한 비밀번호

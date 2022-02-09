@@ -87,8 +87,8 @@ public class MemberMapperTests {
         MemberVO member = new MemberVO();    // MemberVO 변수 선언 및 초기화
         
         /* 올바른 아이디 비번 입력경우 */
-        member.setMemberId("test");
-        member.setMemberPw("test");
+        member.setMemberId("a");
+        member.setMemberPw("admin");
         
         /* 올바른 않은 아이디 비번 입력경우 */
         //member.setMemberId("test1123");
@@ -98,6 +98,19 @@ public class MemberMapperTests {
         System.out.println("결과 값 : " + membermapper.memberLogin(member));
         
     }
+    
+    @Test 
+	public void testMemberLogin() throws Exception { 
+ 
+		String resultPage = mockMvc 
+				.perform(MockMvcRequestBuilders.post("/member/login").param("memberId", "a").param("memberPw", "admin") 
+						.param("memberName", "admin").param("memberMail", "admin")
+						.param("memberAddr1", "admin").param("memberAddr2", "admin").param("memberAddr3", "admin"))
+				.andReturn().getModelAndView().getViewName(); 
+ 
+		log.info(resultPage); 
+ 
+	}
 	
 	
 	
