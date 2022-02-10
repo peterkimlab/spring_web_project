@@ -1,15 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.zerock.mapper.AuthorMapper">
+  <mapper namespace="org.zerock.mapper.AuthorMapper">
+  
+    <!-- 작가 등록 -->
+  	<insert id="authorEnroll">
+  	
+  		insert into vam_author(authorName, nationId, authorIntro) values(#{authorName}, #{nationId}, #{authorIntro} )
 
-	<!-- 작가 등록 -->
-      <insert id="authorEnroll">
-      
-          insert into vam_author(authorId, authorName, nationId, authorIntro) 
-          values(seq_author.nextval, #{authorName}, #{nationId}, #{authorIntro} )
- 
-      </insert>
-
-</mapper>
+  	</insert>	
+  	
+  	
+  	<!-- 작가 목록 -->
+  	<select id="authorGetList" resultType="org.zerock.model.AuthorVO">
+  	
+  	<![CDATA[
+	  	select * from (
+	  		select /*+INDEX_DESC(vam_author SYS_C007184) */ 
+	  			rownum as rn, authorid, authorname, nationid, regdate, updatedate
+			from vam_author 
+			where
+			 
+	]]>		 
+			<if test="keyword != null">
+				authorname like '%'||#{keyword}||'%' and
+			</if>
+			
+	<![CDATA[		
+			 rownum <= #{pageNum}*#{amount}
+			)
+		where rn > (#{pageNum} - 1) * #{amount}
+  	]]>
+  	
+  	</select>
+  	
+  </mapper>

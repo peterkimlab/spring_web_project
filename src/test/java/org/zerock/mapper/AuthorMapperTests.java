@@ -1,5 +1,7 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.zerock.model.AuthorVO;
+import org.zerock.model.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -52,5 +55,21 @@ public class AuthorMapperTests {
         
         mapper.authorEnroll(author);
         
-    } 
+    }
+    
+    /* 작가 목록 테스트 */
+    @Test
+    public void authorGetListTest() throws Exception{
+        
+        Criteria cri = new Criteria(1,10);    // 3페이지 & 10개 행 표시
+        cri.setKeyword("테스트");
+        
+        
+        List<AuthorVO> list = mapper.authorGetList(cri);
+        
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println("list" + i + ".........." + list.get(i));
+        }
+        
+    }
 }
