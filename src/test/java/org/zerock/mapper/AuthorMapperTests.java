@@ -1,0 +1,56 @@
+package org.zerock.mapper;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import org.zerock.model.AuthorVO;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+
+//Test for Controller
+@WebAppConfiguration
+
+@ContextConfiguration({ 
+	"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
+@Log4j
+public class AuthorMapperTests {
+	
+	@Setter(onMethod_ = { @Autowired })
+	private WebApplicationContext ctx;
+
+	private MockMvc mockMvc;
+
+	@Before
+	public void setup() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+	}
+
+	@Autowired
+	private AuthorMapper mapper;			//AuthorMapper.java 인터페이스 의존성 주입
+	
+	/* 작가 등록 테스트 */
+    @Test
+    public void authorEnroll() throws Exception{
+        
+        AuthorVO author = new AuthorVO();
+        
+        author.setNationId("01");
+        author.setAuthorName("테스트");
+        author.setAuthorIntro("테스트 소개");
+        
+        mapper.authorEnroll(author);
+        
+    } 
+}
