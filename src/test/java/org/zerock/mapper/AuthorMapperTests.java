@@ -72,4 +72,18 @@ public class AuthorMapperTests {
         }
         
     }
+    
+    /* 작가 총 수 */
+	@Test
+	public void authorGetTotalTest() throws Exception{
+		
+		Criteria cri = new Criteria();
+		cri.setKeyword("테스트");
+		
+		int total = mapper.authorGetTotal(cri);
+		
+		System.out.println("total........." + total);
+		
+		
+	}
 }

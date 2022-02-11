@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.model.AuthorVO;
 import org.zerock.model.Criteria;
+import org.zerock.model.PageDTO;
 import org.zerock.service.AuthorService;
 
 @Controller
@@ -63,6 +64,17 @@ public class AdminController {
         logger.info("authorManage :" +  list);
         
         model.addAttribute("list", list);
+        
+        /* 페이지 이동 인터페이스 데이터 */
+        int total = authorService.authorGetTotal(cri);
+        
+        PageDTO pageMaker = new PageDTO(cri, total);
+        
+        /* 페이지 이동 인터페이스 데이터 */
+        model.addAttribute("pageMaker", new PageDTO(cri, authorService.authorGetTotal(cri)));
+ 
+
+        
     }
     
     /* 작가 등록 */

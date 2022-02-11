@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.zerock.controller.HomeController;
 import org.zerock.mapper.AuthorMapper;
 import org.zerock.model.AuthorVO;
 import org.zerock.model.Criteria;
@@ -33,6 +32,13 @@ public class AuthorServiceImpl implements AuthorService {
 		log.info("(service) authorGetList()........." + cri);
 		
 		return authorMapper.authorGetList(cri);
+	}
+
+	/* 작가 총 수 */
+	@Override
+	public int authorGetTotal(Criteria cri) throws Exception {
+		log.info("(service)authorGetTotal()......." + cri);
+		return authorMapper.authorGetTotal(cri);
 	}
 
 }
