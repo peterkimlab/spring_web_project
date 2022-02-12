@@ -11,6 +11,7 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+ <script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
 </head>
 </head>
 <body>
@@ -90,7 +91,7 @@
                     				<label>책 소개</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input name="bookIntro">
+                    				<textarea name="bookIntro" id="bookIntro_textarea"></textarea>
                     			</div>
                     		</div>        		
                     		<div class="form_section">
@@ -98,7 +99,7 @@
                     				<label>책 목차</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input name="bookContents">
+                    				<textarea name="bookContents" id="bookContents_textarea"></textarea>
                     			</div>
                     		</div>
                    		</form>
@@ -115,21 +116,39 @@
 
 	let enrollForm = $("#enrollForm")
 	
-	/* 취소 버튼 */
-	$("#cancelBtn").click(function(){
-		
-		location.href="/admin/goodsManage"
-		
-	});
+/* 취소 버튼 */
+$("#cancelBtn").click(function(){
 	
-	/* 상품 등록 버튼 */
-	$("#enrollBtn").on("click",function(e){
+	location.href="/admin/goodsManage"
+	
+});
+
+/* 상품 등록 버튼 */
+$("#enrollBtn").on("click",function(e){
+	
+	e.preventDefault();
+	
+	enrollForm.submit();
+	
+});
+
+
+/* 위지윅 적용 */
+ 
+	/* 책 소개 */
+	ClassicEditor
+		.create(document.querySelector('#bookIntro_textarea'))
+		.catch(error=>{
+			console.error(error);
+		});
 		
-		e.preventDefault();
-		
-		enrollForm.submit();
-		
+	/* 책 목차 */	
+	ClassicEditor
+	.create(document.querySelector('#bookContents_textarea'))
+	.catch(error=>{
+		console.error(error);
 	});
+
 
 </script> 				
 
