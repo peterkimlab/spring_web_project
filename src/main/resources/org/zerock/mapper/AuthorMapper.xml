@@ -7,8 +7,9 @@
     <!-- 작가 등록 -->
   	<insert id="authorEnroll">
   	
-  		insert into vam_author(authorName, nationId, authorIntro) values(#{authorName}, #{nationId}, #{authorIntro} )
-
+  		insert into vam_author(authorId, authorName, nationId, authorIntro) 
+        values(seq_author.nextval, #{authorName}, #{nationId}, #{authorIntro} )
+ 
   	</insert>	
   	
   	

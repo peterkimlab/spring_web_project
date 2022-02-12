@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.model.AuthorVO;
+import org.zerock.model.BookVO;
 import org.zerock.model.Criteria;
 import org.zerock.model.PageDTO;
+import org.zerock.service.AdminService;
 import org.zerock.service.AuthorService;
 
 @Controller
@@ -25,6 +27,9 @@ public class AdminController {
 	
 	@Autowired
     private AuthorService authorService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	/* 관리자 메인 페이지 이동 */
 	@RequestMapping(value="main", method = RequestMethod.GET)
@@ -125,5 +130,19 @@ public class AdminController {
 		return "redirect:/admin/authorManage";
 		
 	}
+	
+	/* 상품 등록 */
+	@PostMapping("/goodsEnroll")
+	public String goodsEnrollPOST(BookVO book, RedirectAttributes rttr) {
+		
+		System.out.println("goodsEnroll ::::::: " + book);
+		logger.info("goodsEnrollPOST......" + book);
+		
+		adminService.bookEnroll(book);
+		
+		rttr.addFlashAttribute("enroll_result", book.getBookName());
+		
+		return "redirect:/admin/goodsManage";
+	}	
 	
 }
