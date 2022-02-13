@@ -19,6 +19,8 @@ import org.zerock.model.PageDTO;
 import org.zerock.service.AdminService;
 import org.zerock.service.AuthorService;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -47,8 +49,23 @@ public class AdminController {
     
     /* 상품 등록 페이지 접속 */
     @RequestMapping(value = "goodsEnroll", method = RequestMethod.GET)
-    public void goodsEnrollGET() throws Exception{
+    public void goodsEnrollGET(Model model) throws Exception{
         logger.info("상품 등록 페이지 접속");
+        
+        ObjectMapper objm = new ObjectMapper();
+		
+		List list = adminService.cateList();
+		
+		String cateList = objm.writeValueAsString(list);
+		
+		model.addAttribute("cateList", cateList);
+		
+		logger.info("변경 전.........." + list);
+		logger.info("변경 후.........." + cateList);
+		
+		System.out.println("변경 전.........." + list);
+		System.out.println("변경 후.........." + cateList);
+        
     }
     
     /* 작가 등록 페이지 접속 */

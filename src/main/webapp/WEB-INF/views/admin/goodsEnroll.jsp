@@ -189,6 +189,10 @@ $("#enrollBtn").on("click",function(e){
 		
 	});
 	
+	$(document).ready(function(){
+		console.log('${cateList}');
+	});
+	
 	
 </script> 				
 
