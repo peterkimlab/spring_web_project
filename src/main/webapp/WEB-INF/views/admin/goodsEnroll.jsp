@@ -242,13 +242,13 @@ $("#enrollBtn").on("click",function(e){
 	makeCateArray(cate2Obj,cate2Array,cateList,2);
 	makeCateArray(cate3Obj,cate3Array,cateList,3);
 	
-	
+	/*
 	$(document).ready(function(){
 		console.log(cate1Array);
 		console.log(cate2Array);
 		console.log(cate3Array);
 	});
-	
+	*/
 	
 	/* 대분류 <option> 태그 */
 	for(let i = 0; i < cate1Array.length; i++){
