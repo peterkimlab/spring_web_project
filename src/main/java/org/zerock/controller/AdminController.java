@@ -102,6 +102,20 @@ public class AdminController {
 		model.addAttribute("goodsInfo", adminService.goodsGetDetail(bookId));
 		
 	}
+	
+	/* 상품 정보 수정 */
+	@PostMapping("/goodsModify")
+	public String goodsModifyPOST(BookVO vo, RedirectAttributes rttr) {
+		
+		logger.info("goodsModifyPOST.........." + vo);
+		
+		int result = adminService.goodsModify(vo);
+		
+		rttr.addFlashAttribute("modify_result", result);
+		
+		return "redirect:/admin/goodsManage";		
+		
+	}
     
     /* 작가 등록 페이지 접속 */
     @RequestMapping(value = "authorEnroll", method = RequestMethod.GET)
@@ -222,5 +236,6 @@ public class AdminController {
 
 	
 	}
+	
 	
 }
