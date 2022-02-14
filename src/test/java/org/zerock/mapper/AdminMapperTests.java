@@ -104,4 +104,18 @@ public class AdminMapperTests {
 		
 	}
 	
+	/* 상품 정보 삭제 */
+	@Test
+	public void goodsDeleteTest() {
+		
+		int bookId = 5;
+		
+		int result = mapper.goodsDelete(bookId);
+		
+		if(result == 1) {
+			System.out.println("삭제 성공");
+		}
+		
+	}
+	
 }
