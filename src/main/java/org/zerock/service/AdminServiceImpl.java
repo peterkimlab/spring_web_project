@@ -52,6 +52,15 @@ public class AdminServiceImpl implements AdminService {
 	public int goodsGetTotal(Criteria cri) {
 		log.info("goodsGetTotal().........");
 		return adminMapper.goodsGetTotal(cri);
+	}
+	
+	/* 상품 조회 페이지 */
+	@Override
+	public BookVO goodsGetDetail(int bookId) {
+		
+		log.info("(service)bookGetDetail......." + bookId);
+		
+		return adminMapper.goodsGetDetail(bookId);
 	}	
 	
 	

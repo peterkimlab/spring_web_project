@@ -19,6 +19,7 @@ import org.zerock.model.PageDTO;
 import org.zerock.service.AdminService;
 import org.zerock.service.AuthorService;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -82,6 +83,25 @@ public class AdminController {
 		System.out.println("변경 후.........." + cateList);
         
     }
+    
+    /* 상품 조회 페이지 */
+	@GetMapping("/goodsDetail")
+	public void goodsGetInfoGET(int bookId, Criteria cri, Model model) throws JsonProcessingException {
+		
+		logger.info("goodsGetInfo()........." + bookId);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		/* 카테고리 리스트 데이터 */
+		model.addAttribute("cateList", mapper.writeValueAsString(adminService.cateList()));		
+		
+		/* 목록 페이지 조건 정보 */
+		model.addAttribute("cri", cri);
+		
+		/* 조회 페이지 정보 */
+		model.addAttribute("goodsInfo", adminService.goodsGetDetail(bookId));
+		
+	}
     
     /* 작가 등록 페이지 접속 */
     @RequestMapping(value = "authorEnroll", method = RequestMethod.GET)
