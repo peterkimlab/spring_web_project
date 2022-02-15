@@ -1,5 +1,8 @@
 package org.zerock.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.model.AuthorVO;
 import org.zerock.model.BookVO;
@@ -278,6 +282,38 @@ public class AdminController {
 		
 		return "redirect:/admin/authorManage";
 		
+	}
+	
+	/* 첨부 파일 업로드 */
+	@PostMapping("/uploadAjaxAction")
+	public void uploadAjaxActionPOST(MultipartFile[] uploadFile) {
+		
+		logger.info("uploadAjaxActionPOST..........");
+		String uploadFolder = "/Users/peter/workspace/spring_workspace/image_folder";
+		
+		/* 날짜 폴더 경로 */
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date date = new Date();
+		
+		String str = sdf.format(date);
+		
+		String datePath = str.replace("-", File.separator);
+		
+		/* 폴더 생성 */
+		File uploadPath = new File(uploadFolder, datePath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		// 향상된 for
+		for(MultipartFile multipartFile : uploadFile) {
+			logger.info("-----------------------------------------------");
+			logger.info("파일 이름 : " + uploadFile[i].getOriginalFilename());
+			logger.info("파일 타입 : " + uploadFile[i].getContentType());
+			logger.info("파일 크기 : " + uploadFile[i].getSize());	
+		}
 	}
 	
 	

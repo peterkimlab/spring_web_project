@@ -495,7 +495,16 @@ $("#enrollBtn").on("click",function(e){
 		console.log("fileList : " + fileList);
 		console.log("fileObj : " + fileObj);
 		
-		alert("통과");
+		formData.append("uploadFile", fileObj);
+				
+		$.ajax({
+			url: '/admin/uploadAjaxAction',
+	    	processData : false,
+	    	contentType : false,
+	    	data : formData,
+	    	type : 'POST',
+	    	dataType : 'json'
+		});		
 		
 	});
 		
