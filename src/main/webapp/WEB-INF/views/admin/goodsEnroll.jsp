@@ -484,6 +484,7 @@ $("#enrollBtn").on("click",function(e){
 	/* 이미지 업로드 */
 	$("input[type='file']").on("change", function(e){
 		
+		let formData = new FormData();
 		let fileInput = $('input[name="uploadFile"]');
 		let fileList = fileInput[0].files;
 		let fileObj = fileList[0];
@@ -492,11 +493,8 @@ $("#enrollBtn").on("click",function(e){
 			return false;
 		}
 		
-		console.log("fileList : " + fileList);
-		console.log("fileObj : " + fileObj);
-		
 		formData.append("uploadFile", fileObj);
-				
+		
 		$.ajax({
 			url: '/admin/uploadAjaxAction',
 	    	processData : false,
@@ -505,6 +503,7 @@ $("#enrollBtn").on("click",function(e){
 	    	type : 'POST',
 	    	dataType : 'json'
 		});		
+
 		
 	});
 		

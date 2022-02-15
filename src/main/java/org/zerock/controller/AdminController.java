@@ -289,6 +289,7 @@ public class AdminController {
 	public void uploadAjaxActionPOST(MultipartFile[] uploadFile) {
 		
 		logger.info("uploadAjaxActionPOST..........");
+		System.out.println("uploadAjaxActionPOST..........");
 		String uploadFolder = "/Users/peter/workspace/spring_workspace/image_folder";
 		
 		/* 날짜 폴더 경로 */
@@ -303,17 +304,19 @@ public class AdminController {
 		/* 폴더 생성 */
 		File uploadPath = new File(uploadFolder, datePath);
 		
+		System.out.println("uploadPath : " + uploadPath);
+		
 		if(uploadPath.exists() == false) {
+			System.out.println("uploadPath doesn't exist");
 			uploadPath.mkdirs();
 		}
 		
+		
 		// 향상된 for
 		for(MultipartFile multipartFile : uploadFile) {
-			logger.info("-----------------------------------------------");
-			logger.info("파일 이름 : " + uploadFile[i].getOriginalFilename());
-			logger.info("파일 타입 : " + uploadFile[i].getContentType());
-			logger.info("파일 크기 : " + uploadFile[i].getSize());	
+			
 		}
+
 	}
 	
 	
