@@ -3,6 +3,8 @@ package org.zerock.controller;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -302,6 +304,29 @@ public class AdminController {
 		
 		logger.info("uploadAjaxActionPOST..........");
 		System.out.println("uploadAjaxActionPOST..........");
+		
+		/* 이미지 파일 체크 */
+		for(MultipartFile multipartFile: uploadFile) {
+			
+			File checkfile = new File(multipartFile.getOriginalFilename());
+			String type = null;
+			
+			try {
+				type = Files.probeContentType(checkfile.toPath());
+				logger.info("MIME TYPE : " + type);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			if(!type.startsWith("image")) {
+				
+				List<AttachImageVO> list = null;
+				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+				
+			}
+			
+		}// for	
+		
 		String uploadFolder = "/Users/peter/workspace/spring_workspace/image_folder";
 		
 		/* 날짜 폴더 경로 */
