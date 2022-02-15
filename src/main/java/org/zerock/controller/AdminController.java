@@ -31,6 +31,8 @@ import org.zerock.service.AuthorService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -337,16 +339,33 @@ public class AdminController {
 				multipartFile.transferTo(saveFile);
 				
 				/* 썸네일 생성(ImageIO) */
-				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
+//				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
+//				
+//				BufferedImage bo_image = ImageIO.read(saveFile);
+//				BufferedImage bt_image = new BufferedImage(300, 500, BufferedImage.TYPE_3BYTE_BGR);
+//								
+//				Graphics2D graphic = bt_image.createGraphics();
+//				
+//				graphic.drawImage(bo_image, 0, 0,300,500, null);
+//					
+//				ImageIO.write(bt_image, "jpg", thumbnailFile);
+				
+				/* 방법 2 */
+				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);	
 				
 				BufferedImage bo_image = ImageIO.read(saveFile);
-				BufferedImage bt_image = new BufferedImage(300, 500, BufferedImage.TYPE_3BYTE_BGR);
-								
-				Graphics2D graphic = bt_image.createGraphics();
+
+				//비율 
+				double ratio = 3;
+				//넓이 높이
+				int width = (int) (bo_image.getWidth() / ratio);
+				int height = (int) (bo_image.getHeight() / ratio);					
 				
-				graphic.drawImage(bo_image, 0, 0,300,500, null);
-					
-				ImageIO.write(bt_image, "jpg", thumbnailFile);
+				
+				Thumbnails.of(saveFile)
+		        .size(width, height)
+		        .toFile(thumbnailFile);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 	
