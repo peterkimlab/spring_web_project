@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.zerock.model.AttachImageVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.Criteria;
 
@@ -26,7 +27,7 @@ public class AdminMapperTests {
 		BookVO book = new BookVO();
 		
 		book.setBookName("mapper 테스트");
-		book.setAuthorId(123);
+		book.setAuthorId(30);
 		book.setPubleYear("2021-03-18");
 		book.setPublisher("출판사");
 		book.setCateCode("0231");
@@ -115,6 +116,21 @@ public class AdminMapperTests {
 		if(result == 1) {
 			System.out.println("삭제 성공");
 		}
+		
+	}
+	
+	/* 이미지 등록 */
+	@Test
+	public void imageEnrollTest() {
+		
+		AttachImageVO vo = new AttachImageVO();
+		
+		vo.setBookId(1);
+		vo.setFileName("test");
+		vo.setUploadPath("test");
+		vo.setUuid("test2");
+		
+		mapper.imageEnroll(vo);
 		
 	}
 	

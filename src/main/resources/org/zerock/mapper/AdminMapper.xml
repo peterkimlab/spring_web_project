@@ -7,6 +7,12 @@
     <!-- 책 등록 -->
   	<insert id="bookEnroll">
   	
+  		<selectKey resultType="int" keyProperty="bookId" order="BEFORE">
+  		
+  			SELECT MAX(bookId)+1 FROM vam_book
+  		
+  		</selectKey>
+  	
   		insert into vam_book(bookId, bookName, authorId, publeYear, publisher, cateCode, bookPrice, bookStock, bookDiscount, bookIntro, bookContents)
 		values(seq_book.nextval, #{bookName},#{authorId}, #{publeYear},#{publisher},#{cateCode},#{bookPrice},#{bookStock},#{bookDiscount},#{bookIntro},#{bookContents})
 
@@ -81,6 +87,13 @@
 		delete from vam_book where bookId = #{bookId}
 	
 	</delete>
+	
+	<!-- 이미지 등록 -->
+	<insert id="imageEnroll">
+	
+		insert into vam_image(bookId, fileName, uploadPath, uuid) values (#{bookId}, #{fileName}, #{uploadPath}, #{uuid})
+	
+	</insert>
   	
   	
   </mapper>
