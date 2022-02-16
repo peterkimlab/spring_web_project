@@ -32,7 +32,7 @@ public class BookController {
 		
 		logger.info("getImage()........" + fileName);
 		
-		File file = new File("/Users/peter/workspace/spring_workspace/image_folder/2022/02/15/" + fileName);
+		File file = new File("/Users/peter/workspace/spring_workspace/image_folder/" + fileName);
 		
 		ResponseEntity<byte[]> result = null;
 		
