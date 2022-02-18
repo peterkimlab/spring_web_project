@@ -52,7 +52,7 @@ public class TaskTest {
 		List<Path> checkFilePath = new ArrayList<Path>();
 		
 		fileList.forEach(vo -> {
-			Path path = Paths.get("C:\\upload", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName());
+			Path path = Paths.get("/Users/peter/workspace/spring_workspace/image_folder/", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName());
 			checkFilePath.add(path);
 		});
 		
@@ -61,7 +61,7 @@ public class TaskTest {
 		System.out.println("========================================");
 		
 		fileList.forEach(vo -> {
-			Path path = Paths.get("C:\\upload", vo.getUploadPath(), "s_" +  vo.getUuid() + "_" + vo.getFileName());
+			Path path = Paths.get("/Users/peter/workspace/spring_workspace/image_folder/", vo.getUploadPath(), "s_" +  vo.getUuid() + "_" + vo.getFileName());
 			checkFilePath.add(path);
 		});
 		
@@ -69,7 +69,7 @@ public class TaskTest {
 		checkFilePath.forEach(list -> System.out.println(list));
 		System.out.println("========================================");		
 		
-		File targetDir = Paths.get("C:\\upload", getFolderYesterDay()).toFile();
+		File targetDir = Paths.get("/Users/peter/workspace/spring_workspace/image_folder/", getFolderYesterDay()).toFile();
 		File[] targetFile = targetDir.listFiles();
 		
 		System.out.println("targetFile : ");

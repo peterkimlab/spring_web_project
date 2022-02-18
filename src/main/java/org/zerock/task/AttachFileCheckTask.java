@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 import org.zerock.mapper.AdminMapper;
 import org.zerock.model.AttachImageVO;
 
-import lombok.extern.log4j.Log4j;
-
 @Component
 public class AttachFileCheckTask {
 
@@ -53,18 +51,18 @@ public class AttachFileCheckTask {
 		List<Path> checkFilePath = new ArrayList<Path>();
 			//원본 이미지
 		fileList.forEach(vo -> {
-			Path path = Paths.get("C:\\upload", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName());
+			Path path = Paths.get("/Users/peter/workspace/spring_workspace/image_folder/", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName());
 			checkFilePath.add(path);
 		});		
 			//썸네일 이미지
 		fileList.forEach(vo -> {
-			Path path = Paths.get("C:\\upload", vo.getUploadPath(), "s_" +  vo.getUuid() + "_" + vo.getFileName());
+			Path path = Paths.get("/Users/peter/workspace/spring_workspace/image_folder/", vo.getUploadPath(), "s_" +  vo.getUuid() + "_" + vo.getFileName());
 			checkFilePath.add(path);
 		});
 		
 		
 		// 디렉토리 파일 리스트
-		File targetDir = Paths.get("C:\\upload", getFolderYesterDay()).toFile();
+		File targetDir = Paths.get("/Users/peter/workspace/spring_workspace/image_folder/", getFolderYesterDay()).toFile();
 		File[] targetFile = targetDir.listFiles();
 		
 		
