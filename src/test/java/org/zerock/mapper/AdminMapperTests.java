@@ -144,4 +144,12 @@ public class AdminMapperTests {
 		
 	}
 	
+	/* 어제자 날짜 이미지 리스트 */
+	@Test
+	public void checkImageListTest() {
+		
+		mapper.checkFileList();
+		
+	}
+	
 }
