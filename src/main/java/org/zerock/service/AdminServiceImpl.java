@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.mapper.AdminMapper;
+import org.zerock.model.AttachImageVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.CateVO;
 import org.zerock.model.Criteria;
@@ -104,8 +105,19 @@ public class AdminServiceImpl implements AdminService {
 
 		log.info("goodsDelete..........");
 		
+		adminMapper.deleteImageAll(bookId);
+		
 		return adminMapper.goodsDelete(bookId);
 	}
+	
+	/* 지정 상품 이미지 정보 얻기 */
+	@Override
+	public List<AttachImageVO> getAttachInfo(int bookId) {
+		
+		log.info("getAttachInfo........");
+		
+		return adminMapper.getAttachInfo(bookId);
+	}	
 	
 	
 }

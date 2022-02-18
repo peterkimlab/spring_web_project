@@ -2,6 +2,7 @@ package org.zerock.service;
 
 import java.util.List;
 
+import org.zerock.model.AttachImageVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.CateVO;
 import org.zerock.model.Criteria;
@@ -28,5 +29,8 @@ public interface AdminService {
 	
 	/* 상품 정보 삭제 */
 	public int goodsDelete(int bookId);
+	
+	/* 지정 상품 이미지 정보 얻기 */
+	public List<AttachImageVO> getAttachInfo(int bookId);
 	
 }
