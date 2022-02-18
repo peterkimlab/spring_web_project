@@ -35,4 +35,20 @@ public class BookMapperTests {
 		
 	}
 	
+	/* 작가 id 리스트 요청 */
+	@Test
+	public void getAuthorId() {
+		
+		String keyword = "폴";
+		
+		String[] list = mapper.getAuthorIdList(keyword);
+		
+		System.out.println("결과 : " + list.toString());
+		
+		for(String id : list) {
+			System.out.println("개별 결과 : " + id);
+		}
+		
+	}
+	
 }
