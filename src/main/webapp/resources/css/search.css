@@ -162,6 +162,15 @@ a{
     margin-left: 10%;
 }
 
+/* 검색결과 없음 */
+.table_empty{
+	height: 50px;
+    text-align: center;
+    margin: 200px 0 215px 0px;
+    font-size: 25px;
+}
+
+
 /* footer navai 영역 */
 .footer_nav{
 	width:100%;
