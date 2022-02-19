@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,20 @@ public class BookServiceImpl implements BookService{
 		
 		String type = cri.getType();
 		String[] typeArr = type.split("");
+		String[] authorArr = bookMapper.getAuthorIdList(cri.getKeyword());
+		
+		
+		if(type.equals("A") || type.equals("AC") || type.equals("AT") || type.equals("ACT")) {
+			if(authorArr.length == 0) {
+				return new ArrayList();
+			}
+		}
 		
 		for(String t : typeArr) {
 			if(t.equals("A")) {
-				String[] authorArr = bookMapper.getAuthorIdList(cri.getKeyword());
 				cri.setAuthorArr(authorArr);
 			}
-		}			
+		}		
 		
 		return bookMapper.getGoodsList(cri);
 	}
