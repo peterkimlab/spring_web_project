@@ -5,8 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.zerock.mapper.AttachMapper;
 import org.zerock.mapper.BookMapper;
+import org.zerock.model.AttachImageVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.Criteria;
 
@@ -16,6 +17,9 @@ public class BookServiceImpl implements BookService{
 
 	@Autowired
 	private BookMapper bookMapper;
+	
+	@Autowired
+	private AttachMapper attachMapper;
 	
 	/* 상품 검색 */
 	@Override
@@ -40,7 +44,19 @@ public class BookServiceImpl implements BookService{
 			}
 		}		
 		
-		return bookMapper.getGoodsList(cri);
+		List<BookVO> list = bookMapper.getGoodsList(cri);
+		
+		list.forEach(book -> {
+			
+			int bookId = book.getBookId();
+			
+			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);
+			
+			book.setImageList(imageList);
+			
+		});
+		
+		return list;
 	}
 
 	/* 사품 총 갯수 */
