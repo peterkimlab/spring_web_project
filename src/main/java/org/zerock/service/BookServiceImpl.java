@@ -9,6 +9,7 @@ import org.zerock.mapper.AttachMapper;
 import org.zerock.mapper.BookMapper;
 import org.zerock.model.AttachImageVO;
 import org.zerock.model.BookVO;
+import org.zerock.model.CateVO;
 import org.zerock.model.Criteria;
 
 
@@ -66,6 +67,24 @@ public class BookServiceImpl implements BookService{
 		System.out.println("goodsGetTotal().......");
 		
 		return bookMapper.goodsGetTotal(cri);
-	}	
+	}
+	
+	/* 국내 카테고리 리스트 */
+	@Override
+	public List<CateVO> getCateCode1() {
+		
+		System.out.println("getCateCode1().......");
+		
+		return bookMapper.getCateCode1();
+	}
+
+	/* 외국 카테고리 리스트 */
+	@Override
+	public List<CateVO> getCateCode2() {
+		
+		System.out.println("getCateCode2().......");
+		
+		return bookMapper.getCateCode2();
+	}
 	
 }

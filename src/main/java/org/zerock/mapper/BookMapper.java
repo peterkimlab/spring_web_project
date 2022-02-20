@@ -3,6 +3,7 @@ package org.zerock.mapper;
 import java.util.List;
 
 import org.zerock.model.BookVO;
+import org.zerock.model.CateVO;
 import org.zerock.model.Criteria;
 
 public interface BookMapper {
@@ -14,6 +15,12 @@ public interface BookMapper {
 	public int goodsGetTotal(Criteria cri);
 	
 	/* 작가 id 리스트 요청 */
-	public String[] getAuthorIdList(String keyword);	
+	public String[] getAuthorIdList(String keyword);
+	
+	/* 국내 카테고리 리스트 */
+	public List<CateVO> getCateCode1();
+	
+	/* 외국 카테고리 리스트 */
+	public List<CateVO> getCateCode2();
 	
 }
