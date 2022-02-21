@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import org.zerock.model.BookVO;
 import org.zerock.model.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -79,7 +79,23 @@ public class BookServiceTests {
 		
 		System.out.println("List<CateFilterDTO> : " + service.getCateInfoList(cri));
 		
-	}		
+	}
+	
+	/*상품 상세 정보*/
+	@Test
+	public void getGoodsInfoTest() {
+		
+		int bookId = 2;
+		
+		BookVO goodsInfo = service.getGoodsInfo(bookId);
+		
+		System.out.println("==결과==");
+		System.out.println("전체 : " + goodsInfo);
+		System.out.println("bookId : " + goodsInfo.getBookId() );
+		System.out.println("이미지 정보 : " + goodsInfo.getImageList().isEmpty());
+		
+		
+	}
 	
 	
 	

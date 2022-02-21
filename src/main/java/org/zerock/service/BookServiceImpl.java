@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.mapper.AdminMapper;
 import org.zerock.mapper.AttachMapper;
 import org.zerock.mapper.BookMapper;
 import org.zerock.model.AttachImageVO;
@@ -22,6 +23,9 @@ public class BookServiceImpl implements BookService{
 	
 	@Autowired
 	private AttachMapper attachMapper;
+	
+	@Autowired
+	private AdminMapper adminMapper;
 	
 	/* 상품 검색 */
 	@Override
@@ -120,6 +124,19 @@ public class BookServiceImpl implements BookService{
 		cri.setCateCode(tempCateCode);
 		
 		return filterInfoList;
+	}
+	
+	@Override
+	public BookVO getGoodsInfo(int bookId) {
+		
+		System.out.println("getGoodsInfo().......");
+		
+		BookVO goodsInfo = bookMapper.getGoodsInfo(bookId);
+		System.out.println("goodsInfo : " + goodsInfo);
+		goodsInfo.setImageList(adminMapper.getAttachInfo(bookId));
+
+		
+		return goodsInfo;
 	}
 	
 }
