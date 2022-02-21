@@ -1,10 +1,11 @@
 package org.zerock.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 import org.zerock.mapper.CartMapper;
 import org.zerock.model.CartDTO;
 
+@Service
 public class CartServiceImpl implements CartService {
 
 	@Autowired
