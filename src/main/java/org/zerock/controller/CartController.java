@@ -65,4 +65,14 @@ public class CartController {
 		return "redirect:/cart/" + cart.getMemberId();
 	}
 	
+	/* 장바구니 삭 */
+	@PostMapping("/cart/delete")
+	public String deleteCartPOST(CartDTO cart) {
+		
+		cartService.deleteCart(cart.getCartId());
+		
+		return "redirect:/cart/" + cart.getMemberId();
+		
+	}
+	
 }
