@@ -1,11 +1,14 @@
 package org.zerock.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.zerock.model.OrderDTO;
 import org.zerock.model.OrderPageDTO;
 import org.zerock.service.MemberService;
 import org.zerock.service.OrderService;
@@ -27,6 +30,14 @@ public class OrderController {
 		
 		
 		return "/order";
-	}	
+	}
+	
+	@PostMapping("/order")
+	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
+		
+		System.out.println(od);		
+		
+		return "redirect:/main";
+	}
 	
 }
