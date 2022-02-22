@@ -14,10 +14,19 @@
   	</select>
   	
   	<!-- 로그인 -->
-      <select id="memberLogin" resultType="org.zerock.model.MemberVO">
-         select memberId, memberPw, memberName, adminCk, money, point from book_member where memberId = #{memberId}
-          <!-- 기존코드 -->
-          <!-- select memberId, memberName, adminck, money, point from book_member where memberId = #{memberId} and memberPw = #{memberPw} -->
-      </select>
+    <select id="memberLogin" resultType="org.zerock.model.MemberVO">
+       select memberId, memberPw, memberName, adminCk, money, point from book_member where memberId = #{memberId}
+        <!-- 기존코드 -->
+        <!-- select memberId, memberName, adminck, money, point from book_member where memberId = #{memberId} and memberPw = #{memberPw} -->
+    </select>
+    
+    <!-- 주문자 정보 -->
+  	<select id="getMemberInfo" resultType="org.zerock.model.MemberVO">
+  	
+  		SELECT memberId, memberName, memberMail, memberAddr1, memberAddr2, memberAddr3, money, point 
+  		FROM book_member 
+  		WHERE memberId = #{memberId}
+  	
+  	</select>
   	
   </mapper>
