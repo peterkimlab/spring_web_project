@@ -33,10 +33,12 @@ import org.zerock.model.AttachImageVO;
 import org.zerock.model.AuthorVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.Criteria;
+import org.zerock.model.OrderCancelDTO;
 import org.zerock.model.OrderDTO;
 import org.zerock.model.PageDTO;
 import org.zerock.service.AdminService;
 import org.zerock.service.AuthorService;
+import org.zerock.service.OrderService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,6 +56,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	/* 관리자 메인 페이지 이동 */
 	@RequestMapping(value="main", method = RequestMethod.GET)
@@ -495,6 +500,15 @@ public class AdminController {
 		}
 		
 		return "/admin/orderList";
+	}
+	
+	/* 주문삭제 */
+	@PostMapping("/orderCancle")
+	public String orderCanclePOST(OrderCancelDTO dto) {
+		
+		orderService.orderCancle(dto);
+		
+		return "redirect:/admin/orderList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum=" + dto.getPageNum();
 	}
 	
 	
