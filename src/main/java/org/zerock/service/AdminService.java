@@ -6,6 +6,7 @@ import org.zerock.model.AttachImageVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.CateVO;
 import org.zerock.model.Criteria;
+import org.zerock.model.OrderDTO;
 
 public interface AdminService {
 
