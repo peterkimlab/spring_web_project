@@ -43,7 +43,13 @@
 		select * from vam_cart 
 		where memberId = #{memberId} and bookId = #{bookId}
 	
-	</select>	
+	</select>
+	
+	<delete id="deleteOrderCart">
+	
+		delete from vam_cart where memberId = #{memberId} and bookId = #{bookId}
+	
+	</delete>	
 	
 	
   </mapper>

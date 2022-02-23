@@ -23,15 +23,15 @@
 	<insert id="enrollOrder">
 	
 		insert into vam_order(orderId, addressee, memberId, memberAddr1, memberAddr2, memberAddr3, orderState, deliveryCost, usePoint)
-    	values(#{orderId},#{addressee}, #{memberId}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, '배송준비', #{deliveryCost}, #{usePoint})
+    	values(#{orderId}, #{addressee}, #{memberId}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, '배송준비', #{deliveryCost}, #{usePoint})
 	
 	</insert>
 	
 	<!-- 주문 아이템 테이블 등록 -->
 	<insert id="enrollOrderItem">
 	
-		insert into vam_orderItem(orderId, bookId, bookCount, bookPrice, bookDiscount, savePoint)
-		values(#{orderId}, #{bookId}, #{bookCount}, #{bookPrice}, #{bookDiscount}, #{savePoint})
+		insert into vam_orderItem(orderItemId, orderId, bookId, bookCount, bookPrice, bookDiscount, savePoint)
+		values(seq_order_item.nextval, #{orderId}, #{bookId}, #{bookCount}, #{bookPrice}, #{bookDiscount}, #{savePoint})
 	
 	</insert>
 	

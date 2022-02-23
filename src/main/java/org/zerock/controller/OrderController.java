@@ -1,6 +1,7 @@
 package org.zerock.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.zerock.model.MemberVO;
 import org.zerock.model.OrderDTO;
 import org.zerock.model.OrderPageDTO;
 import org.zerock.service.MemberService;
@@ -36,6 +38,23 @@ public class OrderController {
 	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
 		
 		System.out.println(od);		
+		
+		orderService.order(od);
+		
+		MemberVO member = new MemberVO();
+		member.setMemberId(od.getMemberId());
+		
+		HttpSession session = request.getSession();
+		
+		try {
+			MemberVO memberLogin = memberService.memberLogin(member);
+			memberLogin.setMemberPw("");
+			session.setAttribute("member", memberLogin);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		
 		return "redirect:/main";
 	}
