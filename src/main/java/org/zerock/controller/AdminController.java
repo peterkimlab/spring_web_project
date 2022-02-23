@@ -33,6 +33,7 @@ import org.zerock.model.AttachImageVO;
 import org.zerock.model.AuthorVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.Criteria;
+import org.zerock.model.OrderDTO;
 import org.zerock.model.PageDTO;
 import org.zerock.service.AdminService;
 import org.zerock.service.AuthorService;
@@ -478,6 +479,22 @@ public class AdminController {
 		
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 		
+	}
+	
+	/* 주문 현황 페이지 */
+	@GetMapping("/orderList")
+	public String orderListGET(Criteria cri, Model model) {
+		
+		List<OrderDTO> list = adminService.getOrderList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageMaker", new PageDTO(cri, adminService.getOrderTotal(cri)));
+		} else {
+			model.addAttribute("listCheck", "empty");
+		}
+		
+		return "/admin/orderList";
 	}
 	
 	

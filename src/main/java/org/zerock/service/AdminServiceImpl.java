@@ -12,6 +12,7 @@ import org.zerock.model.AttachImageVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.CateVO;
 import org.zerock.model.Criteria;
+import org.zerock.model.OrderDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -117,7 +118,19 @@ public class AdminServiceImpl implements AdminService {
 		log.info("getAttachInfo........");
 		
 		return adminMapper.getAttachInfo(bookId);
-	}	
+	}
+	
+	/* 주문 상품 리스트 */
+	@Override
+	public List<OrderDTO> getOrderList(Criteria cri) {
+		return adminMapper.getOrderList(cri);
+	}
+	
+	/* 주문 총 갯수 */
+	@Override
+	public int getOrderTotal(Criteria cri) {
+		return adminMapper.getOrderTotal(cri);
+	}
 	
 	
 }
