@@ -24,7 +24,9 @@ import org.zerock.model.AttachImageVO;
 import org.zerock.model.BookVO;
 import org.zerock.model.Criteria;
 import org.zerock.model.PageDTO;
+import org.zerock.model.ReplyDTO;
 import org.zerock.service.BookService;
+import org.zerock.service.ReplyService;
 
 @Controller
 public class BookController {
@@ -36,6 +38,9 @@ public class BookController {
 	
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	//메인 페이지 이동
 	@RequestMapping(value="/main", method = RequestMethod.GET)
@@ -133,6 +138,17 @@ public class BookController {
 		model.addAttribute("memberId", memberId);
 		
 		return "/replyEnroll";
+	}
+	
+	/* 리뷰 수정 팝업창 */
+	@GetMapping("/replyUpdate")
+	public String replyUpdateWindowGET(ReplyDTO dto, Model model) {
+		BookVO book = bookService.getBookIdName(dto.getBookId());
+		model.addAttribute("bookInfo", book);
+		model.addAttribute("replyInfo", replyService.getUpdateReply(dto.getReplyId()));
+		model.addAttribute("memberId", dto.getMemberId());
+		
+		return "/replyUpdate";
 	}
 	
 }

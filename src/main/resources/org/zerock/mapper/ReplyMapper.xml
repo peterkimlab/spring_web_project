@@ -41,5 +41,20 @@
   		where bookId = #{bookId}
   	
   	</select> 
+  	
+  	<!-- 댓글수정 -->
+  	<update id="updateReply">
+  	
+  		update vam_reply set content = #{content}, rating = #{rating}
+  		where replyId = #{replyId}
+  		
+  	</update>
+  	
+  	<select id="getUpdateReply" resultType="org.zerock.model.ReplyDTO">
+	
+		select * from vam_reply
+		where replyId = #{replyId}
+		
+	</select>
  
   </mapper>
