@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.zerock.mapper.ReplyMapper;
+import org.zerock.model.Criteria;
+import org.zerock.model.PageDTO;
 import org.zerock.model.ReplyDTO;
+import org.zerock.model.ReplyPageDTO;
 
 @Service
 public class ReplyServiceImpl implements ReplyService{
@@ -33,6 +36,16 @@ public class ReplyServiceImpl implements ReplyService{
 			return "1";
 		}
 		
+	}
+	
+	@Override
+	public ReplyPageDTO replyList(Criteria cri) {
+		ReplyPageDTO dto = new ReplyPageDTO();
+		
+		dto.setList(replyMapper.getReplyList(cri));
+		dto.setPageInfo(new PageDTO(cri, replyMapper.getReplyTotal(cri.getBookId())));
+		
+		return dto;
 	}
 	
 }

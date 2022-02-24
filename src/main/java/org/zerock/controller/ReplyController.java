@@ -31,4 +31,8 @@ public class ReplyController {
 		return replyService.checkReply(dto);
 	}
 	
+	@GetMapping(value="/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ReplyPageDTO replyListPOST(Criteria cri) {
+		return replyService.replyList(cri);
+	}
 }
