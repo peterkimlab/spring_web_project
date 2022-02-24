@@ -10,6 +10,13 @@
   		insert into vam_reply(replyId, bookId, memberId, content, rating) 
   		values(seq_reply.nextval, #{bookId}, #{memberId}, #{content}, #{rating})
   	
-  	</insert> 
+  	</insert>
+  	
+  	<select id="checkReply" resultType="integer">
+	
+		select replyId from vam_reply 
+		where memberId = #{memberId} and bookId = #{bookId}
+	
+	</select> 
  
   </mapper>
