@@ -146,5 +146,12 @@
 		where bookId = #{bookId}	
 
 	</select>
+	
+	<select id="getBookIdName" resultType="org.zerock.model.BookVO">
+	
+		select bookId, bookName from vam_book 
+		where bookId = #{bookId}
+	
+	</select>
   	
   </mapper>
