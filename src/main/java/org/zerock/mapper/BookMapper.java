@@ -6,6 +6,7 @@ import org.zerock.model.BookVO;
 import org.zerock.model.CateFilterDTO;
 import org.zerock.model.CateVO;
 import org.zerock.model.Criteria;
+import org.zerock.model.SelectDTO;
 
 public interface BookMapper {
 
@@ -35,5 +36,8 @@ public interface BookMapper {
 	
 	/* 상품 id 이름 */
 	public BookVO getBookIdName(int bookId);
+	
+	/* 평줌순 상품 정보 */
+	public List<SelectDTO> likeSelect();
 	
 }

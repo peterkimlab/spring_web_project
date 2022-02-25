@@ -153,5 +153,17 @@
 		where bookId = #{bookId}
 	
 	</select>
+	
+	<select id="likeSelect" resultType="org.zerock.model.SelectDTO">
+	
+		select * from
+		(select rownum as rn, bookId, bookName, ratingAvg, (select cateName from vam_bcate where vam_book.cateCode = vam_bcate.cateCode) as cateName
+		from vam_book
+		order by ratingAvg desc nulls last)
+		<![CDATA[
+		where rn < 9
+		]]>	
+	
+	</select>
   	
   </mapper>

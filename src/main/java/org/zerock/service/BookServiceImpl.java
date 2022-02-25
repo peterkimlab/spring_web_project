@@ -13,6 +13,7 @@ import org.zerock.model.BookVO;
 import org.zerock.model.CateFilterDTO;
 import org.zerock.model.CateVO;
 import org.zerock.model.Criteria;
+import org.zerock.model.SelectDTO;
 
 
 @Service
@@ -143,6 +144,24 @@ public class BookServiceImpl implements BookService{
 	public BookVO getBookIdName(int bookId) {
 		
 		return bookMapper.getBookIdName(bookId);
+	}
+	
+	@Override
+	public List<SelectDTO> likeSelect() {
+		
+		List<SelectDTO> list = bookMapper.likeSelect();
+		
+		list.forEach(dto -> {
+			
+			int bookId = dto.getBookId();
+			
+			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);
+			
+			dto.setImageList(imageList);
+			
+		});				
+		
+		return list;	
 	}
 	
 }
