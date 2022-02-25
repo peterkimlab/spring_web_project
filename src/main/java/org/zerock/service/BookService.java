@@ -29,7 +29,7 @@ public interface BookService {
 	public BookVO getGoodsInfo(int bookId);
 	
 	/* 상품 id 이름 */
-	public BookVO getBookIdName(int bookId)
+	public BookVO getBookIdName(int bookId);
 	
 	/* 평줌순 상품 정보 */
 	public List<SelectDTO> likeSelect();
